@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lost & Found - Campus Connect</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+  <header class="gradient-header flex items-center justify-between px-8 py-6 bg-gradient-to-r from-blue-600 to-purple-500 text-white rounded-b-2xl mb-8">
+    <h1 class="text-3xl font-bold">Lost & Found</h1>
+    <button id="loginBtn" class="login-btn bg-white text-blue-700 font-semibold px-6 py-2 rounded-lg shadow hover:bg-blue-100 transition">Login</button>
+  </header>
+
+  <!-- Login Modal -->
+  <div id="loginModal" class="modal fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center z-50" style="display:none;">
+    <div class="modal-content bg-white rounded-xl shadow-lg p-8 relative w-80 text-center">
+      <span class="close absolute right-4 top-2 text-2xl text-gray-500 cursor-pointer" id="closeModal">&times;</span>
+      <h2 class="text-xl font-bold mb-2">Login</h2>
+      <p class="mb-4">Select your login type:</p>
+      <div class="login-options flex justify-center gap-4">
+        <button class="student-login bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 font-semibold">Student Login</button>
+        <button class="admin-login bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700 font-semibold">Admin Login</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lost & Found Form (hidden for students) -->
+  <section id="lostFormSection" class="bg-gray-50 dark:bg-gray-900 py-12 px-4 md:px-8">
+    <div class="max-w-3xl mx-auto bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg">
+      <h2 class="text-3xl font-bold text-center text-primary mb-6">📦 Lost & Found</h2>
+
+      <form id="lostForm" class="space-y-5">
+        <div>
+          <label for="title" class="block font-semibold mb-1">Item Title</label>
+          <input type="text" id="title" placeholder="e.g. Black Wallet" required
+            class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+
+        <div>
+          <label for="description" class="block font-semibold mb-1">Description</label>
+          <textarea id="description" placeholder="Where you lost it, color, etc..." required rows="4"
+            class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+        </div>
+
+        <div>
+          <label for="contact" class="block font-semibold mb-1">Contact Info</label>
+          <input type="text" id="contact" placeholder="Phone number / Email" required
+            class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+
+        <div>
+          <label for="image" class="block font-semibold mb-1">Upload Image</label>
+          <input type="file" id="image" accept="image/*" required
+            class="w-full px-4 py-2 bg-white dark:bg-gray-700 border border-dashed border-gray-400 dark:border-gray-600 rounded-lg cursor-pointer file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:bg-blue-600 file:text-white hover:file:bg-blue-700" />
+        </div>
+
+        <div class="text-center">
+          <button type="submit"
+            class="bg-primary hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold transition-all">📤 Post Item</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- List of Posted Items -->
+    <div id="posts" class="mt-12 grid md:grid-cols-2 gap-6 max-w-5xl mx-auto"></div>
+  </section>
+
+  <script src="server.js"">
+    // Login Modal Logic
+    const loginBtn = document.getElementById('loginBtn');
+    const loginModal = document.getElementById('loginModal');
+    const closeModal = document.getElementById('closeModal');
+    const studentLoginBtn = document.querySelector('.student-login');
+    const adminLoginBtn = document.querySelector('.admin-login');
+    const lostFormSection = document.getElementById('lostFormSection');
+
+    loginBtn.onclick = function() {
+      loginModal.style.display = "flex";
+    }
+    closeModal.onclick = function() {
+      loginModal.style.display = "none";
+    }
+    window.onclick = function(event) {
+      if (event.target == loginModal) {
+        loginModal.style.display = "none";
+      }
+    }
+
+    // Student Login: reload page and hide form
+    studentLoginBtn.onclick = function() {
+      loginModal.style.display = "none";
+      lostFormSection.style.display = "none";
+      location.reload();
+    }
+
+    // Admin Login: show form
+    adminLoginBtn.onclick = function() {
+      loginModal.style.display = "none";
+      lostFormSection.style.display = "block";
+    }
+
+    // By default, hide form until login
+    lostFormSection.style.display = "none";
+
+    // Backend logic (Node.js server)
+    const form = document.getElementById('lostForm');
+    const posts = document.getElementById('posts');
+
+    function loadPosts() {
+      fetch('http://localhost:3001/api/lost')
+        .then(res => res.json())
+        .then(items => {
+          posts.innerHTML = '';
+          items.reverse().forEach(item => {
+            const div = document.createElement('div');
+            div.className = 'border p-4 rounded shadow bg-white';
+            div.innerHTML = `
+              ${item.image ? `<img src="${item.image}" alt="" class="h-48 object-cover w-full rounded mb-2" />` : ''}
+              <h3 class="text-xl font-bold">${item.title}</h3>
+              <p>${item.description}</p>
+              <p class="text-sm text-gray-500">Contact: ${item.contact}</p>
+            `;
+            posts.appendChild(div);
+          });
+        });
+    }
+    loadPosts();
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const title = document.getElementById('title').value;
+      const description = document.getElementById('description').value;
+      const contact = document.getElementById('contact').value;
+      const imageFile = document.getElementById('image').files[0];
+
+      let imageUrl = '';
+      if (imageFile) {
+        imageUrl = await new Promise(resolve => {
+          const reader = new FileReader();
+          reader.onload = e => resolve(e.target.result);
+          reader.readAsDataURL(imageFile);
+        });
+      }
+
+      await fetch('http://localhost:3001/api/lost', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ title, description, contact, image: imageUrl, time: Date.now() })
+      });
+
+      form.reset();
+      loadPosts();
+    });
+  </script>
+</body>
+</html>
+
+npm install express body-parser xlsx cors

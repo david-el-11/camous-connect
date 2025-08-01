@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Services | Campus Connect</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#4f46e5',
+            secondary: '#9333ea'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .glass {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+    }
+  </style>
+  <link rel="stylesheet" href="style1.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-white transition-all duration-500">
+
+  <!-- Login Button (top right corner) -->
+  <a href="web log page 2.html">
+    <button id="loginBtn" class="fixed top-6 right-8 z-50 bg-white text-primary font-semibold px-6 py-2 rounded-lg shadow hover:bg-gray-100 transition flex items-center gap-2">
+      <i class="fa-solid fa-user"></i> Log In
+    </button>
+  </a>
+
+  <!-- Our Services Content -->
+  <section class="min-h-screen flex flex-col justify-center items-center text-center px-4 bg-gradient-to-br from-primary to-secondary text-white relative overflow-hidden">
+    <h1 class="text-5xl md:text-6xl font-bold mb-4 animate-bounce">Our Services</h1>
+    <p class="text-lg md:text-xl mb-8">Explore the features and services Campus Connect offers to make your campus life easier and more engaging.</p>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto mb-12">
+      <div class="glass p-6 rounded-2xl shadow text-center" data-aos="fade-up">
+        <i class="fa-solid fa-person-circle-question text-4xl mb-3"></i>
+        <h2 class="font-bold text-xl mb-2">Lost & Found</h2>
+        <p>Report and recover lost items easily within your campus community.</p>
+      </div>
+      <div class="glass p-6 rounded-2xl shadow text-center" data-aos="fade-up" data-aos-delay="100">
+        <i class="fa-solid fa-calendar-days text-4xl mb-3"></i>
+        <h2 class="font-bold text-xl mb-2">Events</h2>
+        <p>Stay updated with upcoming campus events, fests, and workshops.</p>
+      </div>
+      <div class="glass p-6 rounded-2xl shadow text-center" data-aos="fade-up" data-aos-delay="200">
+        <i class="fa-solid fa-note-sticky text-4xl mb-3"></i>
+        <h2 class="font-bold text-xl mb-2">Notes Sharing</h2>
+        <p>Access and share study notes for various subjects and topics.</p>
+      </div>
+      <div class="glass p-6 rounded-2xl shadow text-center" data-aos="fade-up" data-aos-delay="300">
+        <i class="fa-solid fa-briefcase text-4xl mb-3"></i>
+        <h2 class="font-bold text-xl mb-2">Placements</h2>
+        <p>Get placement updates, job opportunities, and career guidance.</p>
+      </div>
+      <div class="glass p-6 rounded-2xl shadow text-center" data-aos="fade-up" data-aos-delay="400">
+        <i class="fa-solid fa-cube text-4xl mb-3"></i>
+        <h2 class="font-bold text-xl mb-2">Clubs</h2>
+        <p>Discover and join campus clubs to pursue your interests and hobbies.</p>
+      </div>
+      <div class="glass p-6 rounded-2xl shadow text-center" data-aos="fade-up" data-aos-delay="500">
+        <i class="fa-solid fa-newspaper text-4xl mb-3"></i>
+        <h2 class="font-bold text-xl mb-2">News</h2>
+        <p>Read the latest campus news and important announcements.</p>
+      </div>
+      <div class="glass p-6 rounded-2xl shadow text-center" data-aos="fade-up" data-aos-delay="600">
+        <i class="fa-solid fa-envelope text-4xl mb-3"></i>
+        <h2 class="font-bold text-xl mb-2">Mails</h2>
+        <p>Receive official mails and notifications from campus authorities.</p>
+      </div>
+      <div class="glass p-6 rounded-2xl shadow text-center" data-aos="fade-up" data-aos-delay="700">
+        <i class="fa-solid fa-comments text-4xl mb-3"></i>
+        <h2 class="font-bold text-xl mb-2">Feedback</h2>
+        <p>Share your feedback and suggestions to improve campus services.</p>
+      </div>
+    </div>
+    <a href="index.html" class="bg-white text-primary px-6 py-2 rounded-full font-semibold shadow hover:bg-gray-100 transition">Back to Home</a>
+  </section>
+
+  <footer class="bg-primary text-white text-center py-6">
+    <p>&copy; 2025 Campus Connect. All rights reserved.</p>
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+</body>
+</html>

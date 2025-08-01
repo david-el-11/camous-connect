@@ -1,0 +1,49 @@
+html {
+  scroll-behavior: smooth;
+}
+.content-section {
+  padding: 3em 2em;
+  background: #fff;
+  border-top: 1px solid #ddd;
+}
+.content-section h3 {
+  color: #2c3e50;
+}
+textarea {
+  width: 100%;
+  max-width: 500px;
+  padding: 1em;
+  margin-top: 1em;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+button {
+  padding: 0.7em 1.5em;
+  margin-top: 1em;
+  background: #18bc9c;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Dark Mode */
+body.dark {
+  background: #121212;
+  color: #eee;
+}
+body.dark .content-section {
+  background: #1e1e1e;
+}
+body.dark .icon-card {
+  background: #333;
+  color: #eee;
+}
+body.dark header, body.dark footer {
+  background: #000;
+}
+body.dark textarea {
+  background: #222;
+  color: white;
+  border-color: #444;
+}

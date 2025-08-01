@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Feedback | Campus Connect</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<style>
+    .feedback-section {
+  max-width: 600px;
+  margin: 3em auto;
+  padding: 2em;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+}
+
+.feedback-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.feedback-form label {
+  font-weight: 600;
+  margin-bottom: 0.5em;
+  margin-top: 1.2em;
+  color: #333;
+}
+
+.feedback-form select,
+.feedback-form textarea {
+  padding: 0.8em;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 15px;
+  resize: vertical;
+}
+
+.feedback-form button {
+  margin-top: 2em;
+  padding: 0.8em 1.2em;
+  background: #7b2ff7;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.feedback-form button:hover {
+  background: #662bd6;
+}
+
+.feedback-note {
+  margin-top: 1.5em;
+  text-align: center;
+  font-size: 14px;
+  color: #777;
+}
+
+</style>
+<body>
+  <header class="gradient-header">
+    <h1>Anonymous Feedback</h1>
+  </header>
+
+  <section class="feedback-section">
+    <form class="feedback-form" onsubmit="return submitFeedback(event)">
+      <label for="category">Feedback Category</label>
+      <select id="category" required>
+        <option value="">Select</option>
+        <option value="Website Issue">Website Issue</option>
+        <option value="Appreciation">Appreciation</option>
+        <option value="Suggestion">Suggestion</option>
+        <option value="Complaint">Complaint</option>
+      </select>
+
+      <label for="message">Your Feedback</label>
+      <textarea id="message" rows="6" placeholder="Write your thoughts here..." required></textarea>
+
+      <button type="submit">Submit Feedback</button>
+    </form>
+
+    <p class="feedback-note">✨ Your feedback is 100% anonymous and helps us improve Campus Connect.</p>
+  </section>
+
+  <script>
+    function submitFeedback(event) {
+      event.preventDefault();
+      alert("✅ Thank you! Your anonymous feedback has been submitted.");
+      document.querySelector('.feedback-form').reset();
+      return false;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Clubs | Campus Connect</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<style>
+    .club-container {
+  padding: 3em 2em;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2em;
+}
+
+.club-card {
+  background: white;
+  padding: 2em;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease;
+}
+
+.club-card:hover {
+  transform: translateY(-6px);
+}
+
+.club-card h3 {
+  margin-bottom: 0.5em;
+  color: #2c3e50;
+}
+
+.club-card p {
+  font-size: 15px;
+  margin-bottom: 1em;
+  color: #444;
+}
+
+.club-card button {
+  padding: 0.6em 1.2em;
+  background: #7b2ff7;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.club-card button:hover {
+  background: #662bd6;
+}
+
+.login-btn {
+  margin-left: 2em;
+  padding: 0.6em 1.4em;
+  background: #7b2ff7;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+  transition: background 0.3s;
+}
+.login-btn:hover {
+  background: #662bd6;
+}
+/* Modal Styles */
+.modal {
+  display: none; 
+  position: fixed; 
+  z-index: 1000; 
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  overflow: auto; 
+  background: rgba(0,0,0,0.3);
+}
+.modal-content {
+  background: white;
+  margin: 8% auto;
+  padding: 2em 2.5em;
+  border-radius: 12px;
+  width: 320px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  text-align: center;
+  position: relative;
+}
+.close {
+  position: absolute;
+  right: 18px;
+  top: 12px;
+  font-size: 28px;
+  color: #888;
+  cursor: pointer;
+}
+.login-options button {
+  margin: 1em 0.5em 0 0.5em;
+  padding: 0.7em 1.4em;
+  background: #7b2ff7;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background 0.3s;
+}
+.login-options button:hover {
+  background: #f107a3;
+}
+</style>
+<body>
+  <header class="gradient-header">
+    <h1>Campus Clubs</h1>
+    <button id="loginBtn" class="login-btn">Login</button>
+  </header>
+
+  <!-- Login Modal -->
+  <div id="loginModal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="closeModal">&times;</span>
+      <h2>Login</h2>
+      <p>Select your login type:</p>
+      <div class="login-options">
+        <button class="student-login">Student Login</button>
+        <button class="admin-login">Admin Login</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Post Club Modal -->
+  <div id="postClubModal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="closePostModal">&times;</span>
+      <h2>Post New Club</h2>
+      <form id="postClubForm">
+        <input type="text" placeholder="Club Name" name="clubname" required style="margin-bottom:1em;width:100%;padding:0.7em;border-radius:6px;border:1px solid #ccc;">
+        <input type="text" placeholder="Category" name="category" required style="margin-bottom:1em;width:100%;padding:0.7em;border-radius:6px;border:1px solid #ccc;">
+        <textarea placeholder="Club Description" name="desc" required style="margin-bottom:1em;width:100%;padding:0.7em;border-radius:6px;border:1px solid #ccc;resize:vertical;"></textarea>
+        <button type="submit" style="padding:0.7em 1.4em;background:#7b2ff7;color:white;border:none;border-radius:6px;font-weight:bold;cursor:pointer;font-size:15px;">Submit Club</button>
+      </form>
+    </div>
+  </div>
+
+  <section class="club-container">
+    <div class="club-card">
+      <h3>Tech Club</h3>
+      <p>For students interested in coding, robotics, and tech events.</p>
+      <button>Join Club</button>
+    </div>
+
+    <div class="club-card">
+      <h3>Nature Club</h3>
+      <p>Focuses on environmental awareness, tree planting, and clean drives.</p>
+      <button>Join Club</button>
+    </div>
+
+    <div class="club-card">
+      <h3>Art & Design Club</h3>
+      <p>Explore creativity through painting, design, and craft competitions.</p>
+      <button>Join Club</button>
+    </div>
+
+    <div class="club-card">
+      <h3>Drama Club</h3>
+      <p>Participate in theatre, acting workshops, and annual stage plays.</p>
+      <button>Join Club</button>
+    </div>
+
+    <div class="club-card">
+      <h3>Sports Club</h3>
+      <p>Football, cricket, athletics and more — train, compete, and win!</p>
+      <button>Join Club</button>
+    </div>
+
+    <div class="club-card">
+      <h3>Photography Club</h3>
+      <p>For those passionate about cameras, visuals, and storytelling.</p>
+      <button>Join Club</button>
+    </div>
+  </section>
+
+  <script>
+  // Modal logic
+  const loginBtn = document.getElementById('loginBtn');
+  const loginModal = document.getElementById('loginModal');
+  const closeModal = document.getElementById('closeModal');
+  const studentLoginBtn = document.querySelector('.student-login');
+  const adminLoginBtn = document.querySelector('.admin-login');
+
+  loginBtn.onclick = function() {
+    loginModal.style.display = "block";
+  }
+  closeModal.onclick = function() {
+    loginModal.style.display = "none";
+  }
+  window.onclick = function(event) {
+    if (event.target == loginModal) {
+      loginModal.style.display = "none";
+    }
+    const postClubModal = document.getElementById('postClubModal');
+    if (event.target == postClubModal) {
+      postClubModal.style.display = "none";
+    }
+  }
+
+  // Student Login: reload page
+  studentLoginBtn.onclick = function() {
+    loginModal.style.display = "none";
+    location.reload();
+  }
+
+  // Admin Login: show "Post Club" button
+  adminLoginBtn.onclick = function() {
+    loginModal.style.display = "none";
+    if (!document.getElementById('postClubBtn')) {
+      const header = document.querySelector('.gradient-header');
+      const postBtn = document.createElement('button');
+      postBtn.id = 'postClubBtn';
+      postBtn.className = 'login-btn';
+      postBtn.textContent = 'Post Club';
+      postBtn.style.marginLeft = '1em';
+      header.appendChild(postBtn);
+    }
+  }
+
+  // Show Post Club Modal when Post Club button is clicked
+  document.addEventListener('click', function(e) {
+    if (e.target && e.target.id === 'postClubBtn') {
+      document.getElementById('postClubModal').style.display = "block";
+    }
+  });
+
+  // Close Post Club Modal
+  document.getElementById('closePostModal').onclick = function() {
+    document.getElementById('postClubModal').style.display = "none";
+  }
+
+  // Handle form submission (currently just closes modal)
+  document.getElementById('postClubForm').onsubmit = function(e) {
+    e.preventDefault();
+    document.getElementById('postClubModal').style.display = "none";
+    alert('Club submitted! (You can add logic to save club)');
+  }
+</script>
+</body>
+</html>

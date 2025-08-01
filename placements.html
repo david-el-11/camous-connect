@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Placements | Campus Connect</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<style>
+    .placement-container {
+  padding: 3em 2em;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2em;
+}
+
+.placement-card {
+  background: white;
+  padding: 2em;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease;
+}
+
+.placement-card:hover {
+  transform: translateY(-6px);
+}
+
+.placement-card h3 {
+  margin-bottom: 0.5em;
+  color: #2c3e50;
+}
+
+.placement-card p {
+  font-size: 15px;
+  margin: 0.3em 0;
+  color: #444;
+}
+
+.placement-card button {
+  margin-top: 1em;
+  padding: 0.6em 1.2em;
+  background: #7b2ff7;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.placement-card button:hover {
+  background: #662bd6;
+}
+
+.login-btn {
+  margin-left: 2em;
+  padding: 0.6em 1.4em;
+  background: #7b2ff7;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+  transition: background 0.3s;
+}
+.login-btn:hover {
+  background: #662bd6;
+}
+
+/* Modal Styles */
+.modal {
+  display: none; 
+  position: fixed; 
+  z-index: 1000; 
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  overflow: auto; 
+  background: rgba(0,0,0,0.3);
+}
+.modal-content {
+  background: white;
+  margin: 8% auto;
+  padding: 2em 2.5em;
+  border-radius: 12px;
+  width: 320px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  text-align: center;
+  position: relative;
+}
+.close {
+  position: absolute;
+  right: 18px;
+  top: 12px;
+  font-size: 28px;
+  color: #888;
+  cursor: pointer;
+}
+.login-options button {
+  margin: 1em 0.5em 0 0.5em;
+  padding: 0.7em 1.4em;
+  background: #7b2ff7;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background 0.3s;
+}
+.login-options button:hover {
+  background: #f107a3;
+}
+</style>
+<body>
+  <header class="gradient-header">
+    <h1>Placement Opportunities</h1>
+    <button id="loginBtn" class="login-btn">Login</button>
+  </header>
+
+  <!-- Login Modal -->
+  <div id="loginModal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="closeModal">&times;</span>
+      <h2>Login</h2>
+      <p>Select your login type:</p>
+      <div class="login-options">
+        <button class="student-login">Student Login</button>
+        <button class="admin-login">Admin Login</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Post Placement Modal -->
+  <div id="postPlacementModal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="closePostModal">&times;</span>
+      <h2>Post New Placement</h2>
+      <form id="postPlacementForm">
+        <input type="text" placeholder="Company Name" name="company" required style="margin-bottom:1em;width:100%;padding:0.7em;border-radius:6px;border:1px solid #ccc;">
+        <input type="text" placeholder="Role" name="role" required style="margin-bottom:1em;width:100%;padding:0.7em;border-radius:6px;border:1px solid #ccc;">
+        <input type="text" placeholder="CTC" name="ctc" required style="margin-bottom:1em;width:100%;padding:0.7em;border-radius:6px;border:1px solid #ccc;">
+        <button type="submit" style="padding:0.7em 1.4em;background:#7b2ff7;color:white;border:none;border-radius:6px;font-weight:bold;cursor:pointer;font-size:15px;">Submit Placement</button>
+      </form>
+    </div>
+  </div>
+
+  <section class="placement-container">
+    <div class="placement-card">
+      <h3>Google</h3>
+      <p><strong>Role:</strong> Software Engineer</p>
+      <p><strong>CTC:</strong> ₹35 LPA</p>
+      <button>Apply Now</button>
+    </div>
+
+    <div class="placement-card">
+      <h3>TCS</h3>
+      <p><strong>Role:</strong> Backend Developer</p>
+      <p><strong>CTC:</strong> ₹7.5 LPA</p>
+      <button>Apply Now</button>
+    </div>
+
+    <div class="placement-card">
+      <h3>Infosys</h3>
+      <p><strong>Role:</strong> System Engineer</p>
+      <p><strong>CTC:</strong> ₹5.8 LPA</p>
+      <button>Apply Now</button>
+    </div>
+
+    <div class="placement-card">
+      <h3>Amazon</h3>
+      <p><strong>Role:</strong> Cloud Intern</p>
+      <p><strong>CTC:</strong> ₹25 LPA (Post Offer)</p>
+      <button>Apply Now</button>
+    </div>
+
+    <div class="placement-card">
+      <h3>Capgemini</h3>
+      <p><strong>Role:</strong> QA Analyst</p>
+      <p><strong>CTC:</strong> ₹6 LPA</p>
+      <button>Apply Now</button>
+    </div>
+
+    <div class="placement-card">
+      <h3>Zoho</h3>
+      <p><strong>Role:</strong> Frontend Developer</p>
+      <p><strong>CTC:</strong> ₹8.5 LPA</p>
+      <button>Apply Now</button>
+    </div>
+  </section>
+
+  <script>
+  // Modal logic
+  const loginBtn = document.getElementById('loginBtn');
+  const loginModal = document.getElementById('loginModal');
+  const closeModal = document.getElementById('closeModal');
+  const studentLoginBtn = document.querySelector('.student-login');
+  const adminLoginBtn = document.querySelector('.admin-login');
+
+  loginBtn.onclick = function() {
+    loginModal.style.display = "block";
+  }
+  closeModal.onclick = function() {
+    loginModal.style.display = "none";
+  }
+  window.onclick = function(event) {
+    if (event.target == loginModal) {
+      loginModal.style.display = "none";
+    }
+    const postPlacementModal = document.getElementById('postPlacementModal');
+    if (event.target == postPlacementModal) {
+      postPlacementModal.style.display = "none";
+    }
+  }
+
+  // Student Login: reload page
+  studentLoginBtn.onclick = function() {
+    loginModal.style.display = "none";
+    location.reload();
+  }
+
+  // Admin Login: show "Post Placement" button
+  adminLoginBtn.onclick = function() {
+    loginModal.style.display = "none";
+    if (!document.getElementById('postPlacementBtn')) {
+      const header = document.querySelector('.gradient-header');
+      const postBtn = document.createElement('button');
+      postBtn.id = 'postPlacementBtn';
+      postBtn.className = 'login-btn';
+      postBtn.textContent = 'Post Placement';
+      postBtn.style.marginLeft = '1em';
+      header.appendChild(postBtn);
+    }
+  }
+
+  // Show Post Placement Modal when Post Placement button is clicked
+  document.addEventListener('click', function(e) {
+    if (e.target && e.target.id === 'postPlacementBtn') {
+      document.getElementById('postPlacementModal').style.display = "block";
+    }
+  });
+
+  // Close Post Placement Modal
+  document.getElementById('closePostModal').onclick = function() {
+    document.getElementById('postPlacementModal').style.display = "none";
+  }
+
+  // Handle form submission (currently just closes modal)
+  document.getElementById('postPlacementForm').onsubmit = function(e) {
+    e.preventDefault();
+    document.getElementById('postPlacementModal').style.display = "none";
+    alert('Placement submitted! (You can add logic to save placement)');
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Campus Connect - 3D Login</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .perspective {
+      perspective: 1200px;
+    }
+
+    .card {
+      transform-style: preserve-3d;
+      transition: transform 1s;
+    }
+
+    .card-inner {
+      backface-visibility: hidden;
+    }
+
+    .card:hover {
+      transform: rotateY(180deg);
+    }
+
+    .card-front,
+    .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 1rem;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-back {
+      transform: rotateY(180deg);
+    }
+
+    /* Add slight hover motion */
+    .login-container:hover .character {
+      transform: scale(1.05) rotate(-2deg);
+    }
+
+    .character {
+      transition: transform 0.5s ease;
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-indigo-500 to-purple-700 flex items-center justify-center h-screen">
+
+  <div class="flex items-center space-x-10 login-container">
+    <!-- Character Image -->
+    <div class="w-48 md:w-60 character">
+      <img src="C:\Users\Divyaraj\Desktop\campus-connect1\WhatsApp_Image_2025-07-31_at_14.48.03_b5cf935a-removebg-preview.png" alt="3D Person" class="w-full drop-shadow-xl" />
+    </div>
+    <!-- Login Card -->
+    <div class="perspective w-96 h-96">
+      <div class="relative w-full h-full card">
+        
+        <!-- Front Side -->
+        <div class="card-front card-inner bg-white flex flex-col items-center justify-center p-8">
+          <h1 class="text-3xl font-bold text-purple-700 mb-4">Campus Connect</h1>
+          <p class="text-gray-500">Hover to Login</p>
+        </div>
+
+        <!-- Back Side (Login Form) -->
+        <div class="card-back card-inner bg-white p-8">
+          <h2 class="text-2xl font-semibold text-center text-purple-700 mb-6">Login</h2>
+          <form>
+            <div class="mb-4">
+              <label class="block text-gray-700 mb-2" for="email">Email</label>
+              <input class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600" type="email" id="email" required>
+            </div>
+            <div class="mb-4">
+              <label class="block text-gray-700 mb-2" for="password">Password</label>
+              <input class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600" type="password" id="password" required>
+            </div>
+            <button class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition duration-300">Login</button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

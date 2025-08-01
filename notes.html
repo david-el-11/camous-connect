@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Notes | Campus Connect</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="gradient-header">
+    <h1>Subject Notes</h1>
+    <button id="loginBtn" class="login-btn">Login</button>
+  </header>
+
+  <!-- Login Modal -->
+  <div id="loginModal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="closeModal">&times;</span>
+      <h2>Login</h2>
+      <p>Select your login type:</p>
+      <div class="login-options">
+        <button class="student-login">Student Login</button>
+        <button class="admin-login">Admin Login</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Post Notes Modal -->
+  <div id="postNotesModal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="closePostModal">&times;</span>
+      <h2>Post New Notes</h2>
+      <form id="postNotesForm">
+        <input type="text" placeholder="Notes Title" name="title" required style="margin-bottom:1em;width:100%;padding:0.7em;border-radius:6px;border:1px solid #ccc;">
+        <input type="text" placeholder="Subject" name="subject" required style="margin-bottom:1em;width:100%;padding:0.7em;border-radius:6px;border:1px solid #ccc;">
+        <textarea placeholder="Notes Description" name="desc" required style="margin-bottom:1em;width:100%;padding:0.7em;border-radius:6px;border:1px solid #ccc;resize:vertical;"></textarea>
+        <button type="submit" style="padding:0.7em 1.4em;background:#7b2ff7;color:white;border:none;border-radius:6px;font-weight:bold;cursor:pointer;font-size:15px;">Submit Notes</button>
+      </form>
+    </div>
+  </div>
+
+  <section class="notes-container">
+    <div class="note-card">
+      <h3>Mathematics</h3>
+      <p>Algebra, Trigonometry, Calculus — organized for fast revision.</p>
+      <button>View Notes</button>
+    </div>
+
+    <div class="note-card">
+      <h3>Physics</h3>
+      <p>Important formulas, solved numericals, and concept charts.</p>
+      <button>View Notes</button>
+    </div>
+
+    <div class="note-card">
+      <h3>Python Programming</h3>
+      <p>Basics to OOP — with code snippets and real project links.</p>
+      <button>View Notes</button>
+    </div>
+
+    <div class="note-card">
+      <h3>English Grammar</h3>
+      <p>Grammar rules, sample writing, and comprehension practice.</p>
+      <button>View Notes</button>
+    </div>
+
+    <div class="note-card">
+      <h3>Chemistry</h3>
+      <p>Periodic table tricks, organic reactions, and summary notes.</p>
+      <button>View Notes</button>
+    </div>
+
+    <div class="note-card">
+      <h3>Web Development</h3>
+      <p>HTML, CSS, JavaScript crash notes with responsive layout tips.</p>
+      <button>View Notes</button>
+    </div>
+  </section>
+
+  <style>
+    .notes-container {
+  padding: 3em 2em;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2em;
+}
+
+.note-card {
+  background: white;
+  padding: 2em;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease;
+}
+
+.note-card:hover {
+  transform: translateY(-6px);
+}
+
+.note-card h3 {
+  margin-bottom: 0.5em;
+  color: #2c3e50;
+}
+
+.note-card p {
+  font-size: 15px;
+  margin-bottom: 1.2em;
+  color: #444;
+}
+
+.note-card button {
+  padding: 0.6em 1.2em;
+  background: #7b2ff7;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.note-card button:hover {
+  background: #662bd6;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em 2em;
+  background: linear-gradient(90deg, #7b2ff7, #f107a3);
+  color: white;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 1.8em;
+}
+
+.login-btn {
+  margin-left: 2em;
+  padding: 0.6em 1.4em;
+  background: #7b2ff7;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+  transition: background 0.3s;
+}
+
+.login-btn:hover {
+  background: #662bd6;
+}
+
+/* Modal Styles */
+.modal {
+  display: none; 
+  position: fixed; 
+  z-index: 1000; 
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  overflow: auto; 
+  background: rgba(0,0,0,0.3);
+}
+
+.modal-content {
+  background: white;
+  margin: 8% auto;
+  padding: 2em 2.5em;
+  border-radius: 12px;
+  width: 320px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  text-align: center;
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  right: 18px;
+  top: 12px;
+  font-size: 28px;
+  color: #888;
+  cursor: pointer;
+}
+
+.login-options button {
+  margin: 1em 0.5em 0 0.5em;
+  padding: 0.7em 1.4em;
+  background: #7b2ff7;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background 0.3s;
+}
+
+.login-options button:hover {
+  background: #f107a3;
+}
+  </style>
+
+  <script>
+  // Modal logic
+  const loginBtn = document.getElementById('loginBtn');
+  const loginModal = document.getElementById('loginModal');
+  const closeModal = document.getElementById('closeModal');
+  const studentLoginBtn = document.querySelector('.student-login');
+  const adminLoginBtn = document.querySelector('.admin-login');
+
+  loginBtn.onclick = function() {
+    loginModal.style.display = "block";
+  }
+  closeModal.onclick = function() {
+    loginModal.style.display = "none";
+  }
+  window.onclick = function(event) {
+    if (event.target == loginModal) {
+      loginModal.style.display = "none";
+    }
+    const postNotesModal = document.getElementById('postNotesModal');
+    if (event.target == postNotesModal) {
+      postNotesModal.style.display = "none";
+    }
+  }
+
+  // Student Login: reload page
+  studentLoginBtn.onclick = function() {
+    loginModal.style.display = "none";
+    location.reload();
+  }
+
+  // Admin Login: show "Post Notes" button
+  adminLoginBtn.onclick = function() {
+    loginModal.style.display = "none";
+    if (!document.getElementById('postNotesBtn')) {
+      const header = document.querySelector('.gradient-header');
+      const postBtn = document.createElement('button');
+      postBtn.id = 'postNotesBtn';
+      postBtn.className = 'login-btn';
+      postBtn.textContent = 'Post Notes';
+      postBtn.style.marginLeft = '1em';
+      header.appendChild(postBtn);
+    }
+  }
+
+  // Show Post Notes Modal when Post Notes button is clicked
+  document.addEventListener('click', function(e) {
+    if (e.target && e.target.id === 'postNotesBtn') {
+      document.getElementById('postNotesModal').style.display = "block";
+    }
+  });
+
+  // Close Post Notes Modal
+  document.getElementById('closePostModal').onclick = function() {
+    document.getElementById('postNotesModal').style.display = "none";
+  }
+
+  // Handle form submission (currently just closes modal)
+  document.getElementById('postNotesForm').onsubmit = function(e) {
+    e.preventDefault();
+    document.getElementById('postNotesModal').style.display = "none";
+    alert('Notes submitted! (You can add logic to save notes)');
+  }
+  </script>
+</body>
+</html>

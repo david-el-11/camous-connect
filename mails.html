@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Inbox | Campus Connect</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="gradient-header">
+    <h1>Student Mails</h1>
+    <button id="loginBtn" class="login-btn">Login</button>
+  </header>
+
+  <!-- Login Modal -->
+  <div id="loginModal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="closeModal">&times;</span>
+      <h2>Login</h2>
+      <p>Select your login type:</p>
+      <div class="login-options">
+        <button class="student-login">Student Login</button>
+        <button class="admin-login">Admin Login</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Send Mail Modal -->
+  <div id="sendMailModal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="closeSendModal">&times;</span>
+      <h2>Send Mail</h2>
+      <form id="sendMailForm">
+        <input type="text" placeholder="Recipient Name" name="recipient" required style="margin-bottom:1em;width:100%;padding:0.7em;border-radius:6px;border:1px solid #ccc;">
+        <input type="text" placeholder="Subject" name="subject" required style="margin-bottom:1em;width:100%;padding:0.7em;border-radius:6px;border:1px solid #ccc;">
+        <textarea placeholder="Message" name="message" required style="margin-bottom:1em;width:100%;padding:0.7em;border-radius:6px;border:1px solid #ccc;resize:vertical;"></textarea>
+        <button type="submit" style="padding:0.7em 1.4em;background:#7b2ff7;color:white;border:none;border-radius:6px;font-weight:bold;cursor:pointer;font-size:15px;">Send Mail</button>
+      </form>
+    </div>
+  </div>
+
+  <section class="mail-container">
+    <div class="mail-card">
+      <h3>Admin Office</h3>
+      <p class="subject">Upcoming Mid-Sem Exams</p>
+      <p>Your mid-sem exam schedule is released. Please check the exam portal.</p>
+      <button>View Mail</button>
+    </div>
+
+    <div class="mail-card">
+      <h3>Training & Placement Cell</h3>
+      <p class="subject">Infosys Hiring Drive</p>
+      <p>Infosys is visiting campus on August 10. Register on T&P portal by August 5.</p>
+      <button>View Mail</button>
+    </div>
+
+    <div class="mail-card">
+      <h3>Library</h3>
+      <p class="subject">Book Return Reminder</p>
+      <p>Please return “Digital Electronics” by Monday to avoid a late fee.</p>
+      <button>View Mail</button>
+    </div>
+
+    <div class="mail-card">
+      <h3>Faculty: Mr. Raj Mehta</h3>
+      <p class="subject">Assignment Reminder</p>
+      <p>Submit your JavaScript assignment by Friday. Late submissions not accepted.</p>
+      <button>View Mail</button>
+    </div>
+
+    <div class="mail-card">
+      <h3>Event Committee</h3>
+      <p class="subject">Registration Open - Tech Talk</p>
+      <p>Join the AI & Innovation session with speakers from Google and Meta.</p>
+      <button>View Mail</button>
+    </div>
+
+    <div class="mail-card">
+      <h3>Dean</h3>
+      <p class="subject">Welcome to Campus Connect</p>
+      <p>We’re excited to launch the new student portal — explore features today!</p>
+      <button>View Mail</button>
+    </div>
+  </section>
+
+  <style>
+    .mail-container {
+  padding: 3em 2em;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2em;
+}
+
+.mail-card {
+  background: white;
+  padding: 2em;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease;
+}
+
+.mail-card:hover {
+  transform: translateY(-6px);
+}
+
+.mail-card h3 {
+  margin-bottom: 0.3em;
+  color: #2c3e50;
+}
+
+.mail-card .subject {
+  font-size: 14px;
+  color: #7b2ff7;
+  font-weight: 600;
+  margin-bottom: 0.6em;
+}
+
+.mail-card p {
+  font-size: 15px;
+  color: #444;
+  margin-bottom: 1em;
+}
+
+.mail-card button {
+  padding: 0.6em 1.2em;
+  background: #7b2ff7;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.mail-card button:hover {
+  background: #662bd6;
+}
+
+.login-btn {
+  margin-left: 2em;
+  padding: 0.6em 1.4em;
+  background: #7b2ff7;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+  transition: background 0.3s;
+}
+.login-btn:hover {
+  background: #662bd6;
+}
+/* Modal Styles */
+.modal {
+  display: none; 
+  position: fixed; 
+  z-index: 1000; 
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  overflow: auto; 
+  background: rgba(0,0,0,0.3);
+}
+.modal-content {
+  background: white;
+  margin: 8% auto;
+  padding: 2em 2.5em;
+  border-radius: 12px;
+  width: 320px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  text-align: center;
+  position: relative;
+}
+.close {
+  position: absolute;
+  right: 18px;
+  top: 12px;
+  font-size: 28px;
+  color: #888;
+  cursor: pointer;
+}
+.login-options button {
+  margin: 1em 0.5em 0 0.5em;
+  padding: 0.7em 1.4em;
+  background: #7b2ff7;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background 0.3s;
+}
+.login-options button:hover {
+  background: #f107a3;
+}
+  </style>
+
+  <script>
+  // Modal logic
+  const loginBtn = document.getElementById('loginBtn');
+  const loginModal = document.getElementById('loginModal');
+  const closeModal = document.getElementById('closeModal');
+  const studentLoginBtn = document.querySelector('.student-login');
+  const adminLoginBtn = document.querySelector('.admin-login');
+
+  loginBtn.onclick = function() {
+    loginModal.style.display = "block";
+  }
+  closeModal.onclick = function() {
+    loginModal.style.display = "none";
+  }
+  window.onclick = function(event) {
+    if (event.target == loginModal) {
+      loginModal.style.display = "none";
+    }
+    const sendMailModal = document.getElementById('sendMailModal');
+    if (event.target == sendMailModal) {
+      sendMailModal.style.display = "none";
+    }
+  }
+
+  // Student Login: reload page
+  studentLoginBtn.onclick = function() {
+    loginModal.style.display = "none";
+    location.reload();
+  }
+
+  // Admin Login: show "Send Mail" button
+  adminLoginBtn.onclick = function() {
+    loginModal.style.display = "none";
+    if (!document.getElementById('sendMailBtn')) {
+      const header = document.querySelector('.gradient-header');
+      const sendBtn = document.createElement('button');
+      sendBtn.id = 'sendMailBtn';
+      sendBtn.className = 'login-btn';
+      sendBtn.textContent = 'Send Mail';
+      sendBtn.style.marginLeft = '1em';
+      header.appendChild(sendBtn);
+    }
+  }
+
+  // Show Send Mail Modal when Send Mail button is clicked
+  document.addEventListener('click', function(e) {
+    if (e.target && e.target.id === 'sendMailBtn') {
+      document.getElementById('sendMailModal').style.display = "block";
+    }
+  });
+
+  // Close Send Mail Modal
+  document.getElementById('closeSendModal').onclick = function() {
+    document.getElementById('sendMailModal').style.display = "none";
+  }
+
+  // Handle form submission (currently just closes modal)
+  document.getElementById('sendMailForm').onsubmit = function(e) {
+    e.preventDefault();
+    document.getElementById('sendMailModal').style.display = "none";
+    alert('Mail sent! (You can add logic to save mail)');
+  }
+  </script>
+</body>
+</html>

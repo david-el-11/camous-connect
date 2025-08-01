@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Events | Campus Connect</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<style>
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #f8f8f8;
+  color: #333;
+}
+
+.gradient-header {
+  height: 200px;
+  background: linear-gradient(135deg, #7b2ff7, #f107a3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  position: relative;
+}
+
+.gradient-header h1 {
+  font-size: 32px;
+}
+
+.events-container {
+  padding: 3em 2em;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2em;
+}
+
+.event-card {
+  background: white;
+  border-radius: 12px;
+  padding: 2em;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease;
+}
+
+.event-card:hover {
+  transform: translateY(-6px);
+}
+
+.event-card h3 {
+  font-size: 22px;
+  color: #2c3e50;
+}
+
+.event-card .date {
+  font-size: 14px;
+  color: #888;
+  margin: 0.5em 0;
+}
+
+.event-card .desc {
+  font-size: 15px;
+  margin-bottom: 1em;
+}
+
+.event-card button {
+  padding: 0.6em 1.2em;
+  background: #18bc9c;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.event-card button:hover {
+  background: #139e82;
+}
+
+.login-btn {
+  margin-left: 2em;
+  padding: 0.6em 1.4em;
+  background: #18bc9c;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+  transition: background 0.3s;
+}
+
+/* Modal Styles */
+.modal {
+  display: none; 
+  position: fixed; 
+  z-index: 1000; 
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  overflow: auto; 
+  background: rgba(0,0,0,0.3);
+}
+
+.modal-content {
+  background: white;
+  margin: 8% auto;
+  padding: 2em 2.5em;
+  border-radius: 12px;
+  width: 320px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  text-align: center;
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  right: 18px;
+  top: 12px;
+  font-size: 28px;
+  color: #888;
+  cursor: pointer;
+}
+
+.login-options button {
+  margin: 1em 0.5em 0 0.5em;
+  padding: 0.7em 1.4em;
+  background: #7b2ff7;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background 0.3s;
+}
+
+.login-options button:hover {
+  background: #f107a3;
+}
+
+</style>
+<body>
+  <header class="gradient-header">
+    <h1>Upcoming Events</h1>
+    <button id="loginBtn" class="login-btn">Login</button>
+  </header>
+
+  <!-- Login Modal -->
+  <div id="loginModal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="closeModal">&times;</span>
+      <h2>Login</h2>
+      <p>Select your login type:</p>
+      <div class="login-options">
+        <button class="student-login">Student Login</button>
+        <button class="admin-login">Admin Login</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Post Event Modal -->
+  <div id="postEventModal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="closePostModal">&times;</span>
+      <h2>Post New Event</h2>
+      <form id="postEventForm">
+        <input type="text" placeholder="Event Title" name="title" required style="margin-bottom:1em;width:100%;padding:0.7em;border-radius:6px;border:1px solid #ccc;">
+        <input type="date" name="date" required style="margin-bottom:1em;width:100%;padding:0.7em;border-radius:6px;border:1px solid #ccc;">
+        <textarea placeholder="Event Description" name="desc" required style="margin-bottom:1em;width:100%;padding:0.7em;border-radius:6px;border:1px solid #ccc;resize:vertical;"></textarea>
+        <button type="submit" style="padding:0.7em 1.4em;background:#18bc9c;color:white;border:none;border-radius:6px;font-weight:bold;cursor:pointer;font-size:15px;">Submit Event</button>
+      </form>
+    </div>
+  </div>
+
+  <section class="events-container">
+    <div class="event-card">
+      <h3>Tech Talk 2025</h3>
+      <p class="date">August 5, 2025</p>
+      <p class="desc">Join us for an exciting tech session on AI & Innovation hosted by industry experts.</p>
+      <button>Register</button>
+    </div>
+
+    <div class="event-card">
+      <h3>Hackathon 2025</h3>
+      <p class="date">July 31, 2025</p>
+      <p class="desc">24-hour coding sprint with themes like Campus Solutions and Sustainability.</p>
+      <button>Join Now</button>
+    </div>
+
+    <div class="event-card">
+      <h3>Green Day</h3>
+      <p class="date">August 10, 2025</p>
+      <p class="desc">A plantation and awareness drive hosted by the Nature Club.</p>
+      <button>Volunteer</button>
+    </div>
+
+    <div class="event-card">
+      <h3>Student Startup Expo</h3>
+      <p class="date">August 12, 2025</p>
+      <p class="desc">Showcase your startup ideas and network with investors and mentors.</p>
+      <button>Showcase</button>
+    </div>
+
+    <div class="event-card">
+      <h3>Sports Meet</h3>
+      <p class="date">August 20, 2025</p>
+      <p class="desc">Inter-departmental sports competitions in cricket, football, badminton, and more.</p>
+      <button>Register Team</button>
+    </div>
+
+    <div class="event-card">
+      <h3>Cultural Fest</h3>
+      <p class="date">August 25, 2025</p>
+      <p class="desc">Dance, music, drama and more — celebrate campus life with creativity!</p>
+      <button>Join Fest</button>
+    </div>
+
+    <div class="event-card">
+      <h3>Photography Contest</h3>
+      <p class="date">August 28, 2025</p>
+      <p class="desc">Capture the essence of college life and win exciting prizes in our photography challenge.</p>
+      <button>Submit Entry</button>
+    </div>
+
+    <div class="event-card">
+      <h3>Resume Building Workshop</h3>
+      <p class="date">September 5, 2025</p>
+      <p class="desc">Enhance your resume writing skills and learn tips to impress employers.</p>
+      <button>Register Now</button>
+    </div>
+  </section>
+
+  <script>
+  // Modal functionality
+  const loginBtn = document.getElementById('loginBtn');
+  const loginModal = document.getElementById('loginModal');
+  const closeModal = document.getElementById('closeModal');
+
+  loginBtn.onclick = function() {
+    loginModal.style.display = "block";
+  }
+  closeModal.onclick = function() {
+    loginModal.style.display = "none";
+  }
+  window.onclick = function(event) {
+    if (event.target == loginModal) {
+      loginModal.style.display = "none";
+    }
+  }
+
+  // Student Login: reload page
+  studentLoginBtn.onclick = function() {
+    loginModal.style.display = "none";
+    location.reload();
+  }
+
+  // Admin Login: show "Post Event" button
+  adminLoginBtn.onclick = function() {
+    loginModal.style.display = "none";
+    // Check if button already exists
+    if (!document.getElementById('postEventBtn')) {
+      const header = document.querySelector('.gradient-header');
+      const postBtn = document.createElement('button');
+      postBtn.id = 'postEventBtn';
+      postBtn.className = 'login-btn';
+      postBtn.textContent = 'Post Event';
+      postBtn.style.marginLeft = '1em';
+      header.appendChild(postBtn);
+      // You can add further logic for postBtn click here
+    }
+  }
+
+  // Show Post Event Modal when Post Event button is clicked
+  document.addEventListener('click', function(e) {
+    if (e.target && e.target.id === 'postEventBtn') {
+      document.getElementById('postEventModal').style.display = "block";
+    }
+  });
+
+  // Close Post Event Modal
+  document.getElementById('closePostModal').onclick = function() {
+    document.getElementById('postEventModal').style.display = "none";
+  }
+  window.addEventListener('click', function(event) {
+    const postEventModal = document.getElementById('postEventModal');
+    if (event.target == postEventModal) {
+      postEventModal.style.display = "none";
+    }
+  });
+
+  // Optional: Handle form submission (currently just closes modal)
+  document.getElementById('postEventForm').onsubmit = function(e) {
+    e.preventDefault();
+    document.getElementById('postEventModal').style.display = "none";
+    alert('Event submitted! (You can add logic to save event)');
+  }
+
+  const container = document.querySelector('.events-container');
+
+  async function loadEvents() {
+    const { data, error } = await supabase
+      .from('events')
+      .select('*')
+      .order('created_at', { ascending: false });
+
+    container.innerHTML = '';
+    data.forEach(event => {
+      const div = document.createElement('div');
+      div.className = 'event-card';
+      div.innerHTML = `
+        <h3>${event.title}</h3>
+        <p class="date">${event.date}</p>
+        <p class="desc">${event.desc}</p>
+        <button>Register</button>
+      `;
+      container.appendChild(div);
+    });
+  }
+
+  loadEvents();
+  </script>
+</body>
+</html>
